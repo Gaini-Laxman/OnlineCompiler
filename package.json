@@ -1,0 +1,17 @@
+{
+  "name": "online-compiler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@uiw/react-monacoeditor": "^3.5.3",
+    "online-compiler": "file:",
+    "react-simple-code-editor": "^0.11.0"
+  }
+}
