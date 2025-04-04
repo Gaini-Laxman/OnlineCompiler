@@ -17,7 +17,9 @@ import CustomNavbar from "./CustomNavbar";
 import { CssBaseline } from "@mui/material";
 import FeatureView from "./FeatureView";
 
-const socket = io(`localhost:8000`);
+const socket = io("https://backendserver-production-8815.up.railway.app", {
+  transports: ["websocket"],
+});
 
 function App() {
   const [dark, setDark] = useState(false);
@@ -158,16 +160,19 @@ function App() {
     setDark((prev) => !prev);
   };
   const download = async () => {
-    const got = await fetch("http://localhost:8000/download", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      },
-      body: new URLSearchParams({
-        language: language,
-        code: code,
-      }),
-    });
+    const got = await fetch(
+      "https://backendserver-production-8815.up.railway.app/download",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+        body: new URLSearchParams({
+          language: language,
+          code: code,
+        }),
+      }
+    );
     const blob = await got.blob();
     console.log(blob);
     //text/x-c
@@ -189,18 +194,21 @@ function App() {
     link.click();
   };
   const save = async () => {
-    const got = await fetch("http://localhost:8000/savecode", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-      },
-      body: new URLSearchParams({
-        uid: authUser,
-        language: language,
-        code: code,
-        filename: "main",
-      }),
-    });
+    const got = await fetch(
+      "https://backendserver-production-8815.up.railway.app/savecode",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        },
+        body: new URLSearchParams({
+          uid: authUser,
+          language: language,
+          code: code,
+          filename: "main",
+        }),
+      }
+    );
     const pos = await got.json();
     if (pos.success) {
       toast.success("Saved", {
